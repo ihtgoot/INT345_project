@@ -145,42 +145,53 @@ def ApplySpatialEnvelope(dx, dy, H, W):
 
 
 
-def main(path):
+def pipeline(path):
     img = cv.imread(path)  # grayscale
 
     H, W , c= img.shape
 
     dx, dy = GenerateDisplacement(H, W)
+    cv.imshow("dx", Normalize(dx))
+    cv.imshow("dy", Normalize(dy))
     dx, dy, envelope = ApplySpatialEnvelope(dx, dy, H, W)
-    out1 = Warp(img, dx, dy, 2)
+    out1 = Warp(img, dx, dy, 1.5)
     variation=Normalize(ComputeVariation(dx, dy))
     blured1 = ApplyBlur(out1,variation)
 
     # for i in range(layer):
 
     nx, ny = NewDisplacemnt(dx,dy,blured1)
-    
-    outN = Warp(blured1, nx, ny, 2.5)
+    out2 = Warp(blured1, nx, ny, 1)
+    varition2 = Normalize(ComputeVariation(nx,ny))
+    blured2 = ApplyBlur(out2,varition2)
+
+
+    nx, ny = NewDisplacemnt(dx,dy,blured2)
+    outN = Warp(blured2, nx, ny, 0.5)
     varitionN = Normalize(ComputeVariation(nx,ny))
     bluredN = ApplyBlur(outN,varitionN)
+
     final = AddNoise(bluredN)
 
-    # cv.imshow("dx", Normalize(dx))
-    # cv.imshow("dy", Normalize(dy))
+
     # cv.imshow("variation", variation)
 
-    cv.imshow("original", img)
+    #cv.imshow("original", img)
     # cv.imshow("cv warp", out1)
     # cv.imshow("blured1", blured1)
     # cv.imshow("cv warp2", outN)
     # cv.imshow("blured", bluredN)
-    cv.imshow("final", final)
-    cv.imshow("env", envelope)
+    #cv.imshow("final", final)
+    #cv.imshow("env", envelope)
 
+    return final
 
-    cv.waitKey(0)
-
+    
 
 
 if __name__ == "__main__":
-    main(path="/home/ihtgoot/CV/detailed-shot-of-ripples-at-sunset-free-image.jpeg")
+    path  = "/home/ihtgoot/CV/Cape_may.jpg"
+    res = pipeline(path)
+    cv.imshow("final", res)
+    cv.waitKey(0)
+    

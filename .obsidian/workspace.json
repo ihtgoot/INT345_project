@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "e0f19ebc47e89d92",
+        "id": "b9f7346ee226fdd3",
         "type": "tabs",
         "children": [
           {
-            "id": "60b6ded8591afd82",
+            "id": "038581f805fed375",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -183,14 +183,16 @@
       "bases:Create new base": false
     }
   },
-  "active": "60b6ded8591afd82",
+  "active": "038581f805fed375",
   "lastOpenFiles": [
-    "2207.10040v2.pdf",
     "p1_data.md",
     "detailed-shot-of-ripples-at-sunset-free-image.jpeg",
+    "2207.10040v2.pdf",
+    "Cape_may.jpg",
+    "PAPER.md",
+    "output.png",
     "Unconfirmed 224810.crdownload",
     "paper1_data.py",
-    "PAPER.md",
     "Unconfirmed 688195.crdownload",
     "Welcome.md"
   ]
