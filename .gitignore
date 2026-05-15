@@ -1,1 +1,6 @@
 archive/
+__pycache__/
+*.pdfc
+*.jpeg
+*.jpg
+*.png
